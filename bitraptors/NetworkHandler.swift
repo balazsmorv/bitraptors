@@ -30,7 +30,7 @@ class NetworkHandler {
         }
     }
     
-    weak var delegate: SearchResultsAvailableDelegate?
+    var delegate: SearchResultsAvailableDelegate?
     
     // MARK: - Functions
     init() {
@@ -66,10 +66,11 @@ class NetworkHandler {
             print(error!)
         } else {
             if data != nil {
-                if let venueSearchResult = try? JSONDecoder().decode(VenueSearchResult.self, from: data!) {
+                do {
+                    let venueSearchResult = try JSONDecoder().decode(VenueSearchResult.self, from: data!)
                     delegate?.newDataCame(new: venueSearchResult.response.groups)
-                } else {
-                    print("JSON parsing not successful")
+                } catch {
+                    print("the error: \(error)")
                 }
             }
         }
@@ -79,5 +80,5 @@ class NetworkHandler {
 
 
 protocol SearchResultsAvailableDelegate: class {
-    func newDataCame(new list: VenueList) -> Void
+    func newDataCame(new venues: [Venue]) -> Void
 }

@@ -33,6 +33,6 @@ struct MetaData: Decodable {
 }
 
 struct JSONResponse: Decodable {
-    let groups: VenueList
+    let groups: [Venue]
 }
 

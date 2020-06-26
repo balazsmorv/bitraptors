@@ -11,13 +11,14 @@ import Foundation
 
 class VenueList: Decodable, SearchResultsAvailableDelegate {
     
-    let items: [Venue]
+    var items: [Venue]
     
     init() {
         items = [Venue]()
     }
     
-    func newDataCame(new list: VenueList) {
+    func newDataCame(new venues: [Venue]) {
         print("new search results came in")
+        items = venues
     }
 }

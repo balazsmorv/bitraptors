@@ -13,12 +13,12 @@ class Venue: Decodable {
     //MARK: - Properties
     let id = "N/A"
     let name = "N/A"
-    let contactInformation: ContactInformation
-    let location: Location
-    let category: VenueCategory
+    let contactInformation: ContactInformation?
+    let location: Location?
+    let category: VenueCategory?
     let url = "N/A"
     let rating = "N/A"
-    let openStatus: OpenStatus
+    let openStatus: OpenStatus?
     
     enum CodingKeys: String, CodingKey {
         case id
