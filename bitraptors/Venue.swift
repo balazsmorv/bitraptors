@@ -20,6 +20,7 @@ class Venue: Decodable {
     let rating = "N/A"
     let openStatus: OpenStatus?
     
+    //MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -33,6 +34,7 @@ class Venue: Decodable {
     
 }
 
+//MARK: - Supporting structs containing some details of the venue
 struct ContactInformation: Decodable {
     let phone: String?
     let twitterName: String?

@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
         
+        // Create the network handler and the venue list - these will be the environment objects
         let networkHandler = NetworkHandler()
         let venueList = VenueList()
         networkHandler.delegate = venueList

@@ -16,6 +16,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     //MARK: - Properties
     private let locationManager = CLLocationManager()
     
+    //MARK: - Init
     override init() {
         super.init()
         

@@ -49,7 +49,6 @@ class NetworkHandler {
         &radius=\(radius)\
         &v=\(version)
         """
-        print("the given url: \(url)")
         
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
         cachePolicy: .useProtocolCachePolicy,
@@ -70,8 +69,10 @@ class NetworkHandler {
                     let venueSearchResult = try JSONDecoder().decode(VenueSearchResult.self, from: data!)
                     delegate?.newDataCame(new: venueSearchResult.response.groups)
                 } catch {
-                    print("the error: \(error)")
+                    print("NetworkHandler::requestCompleted() -> Parsing the JSON was not successfull, error: \(error)")
                 }
+            } else {
+                print("NetworkHandler::requestCompleted() -> the data parameter was nil.")
             }
         }
     }

@@ -9,16 +9,25 @@
 import Foundation
 
 
-class VenueList: Decodable, SearchResultsAvailableDelegate {
+class VenueList: Decodable {
     
-    var items: [Venue]
+    //MARK: - Properties
+    private var items: [Venue]
     
+    //MARK: - Functions
     init() {
         items = [Venue]()
     }
     
+    func getVenue(at index: Int) -> Venue? {
+        return items[index]
+    }
+    
+}
+
+//MARK: - Conformance to protocol SearchResultsAvailableDelegate
+extension VenueList: SearchResultsAvailableDelegate {
     func newDataCame(new venues: [Venue]) {
-        print("new search results came in")
         items = venues
     }
 }
