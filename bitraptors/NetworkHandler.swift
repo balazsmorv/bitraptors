@@ -17,6 +17,7 @@ class NetworkHandler {
     let clientID = "OOMFJUB1X4YNK04OKARGJSSRJP51VVCQMW5RTCJ03YIFWPVJ"
     let clientSecret = "2PMTIAKNF3SIP4GPDVIXWYPNKNJYXZ0AOLHARE2PPIC1KB0L"
     let version = "20200626"
+    let limit = 10
     
     var userLocation: CLLocationCoordinate2D? {
         didSet {
@@ -47,6 +48,7 @@ class NetworkHandler {
         &client_secret=\(clientSecret)\
         &ll=\(userLocation!.latitude),\(userLocation!.longitude)\
         &radius=\(radius)\
+        &limit=\(limit)\
         &v=\(version)
         """
         
@@ -66,8 +68,10 @@ class NetworkHandler {
         } else {
             if data != nil {
                 do {
+                    
                     let venueSearchResult = try JSONDecoder().decode(VenueSearchResult.self, from: data!)
-                    delegate?.newDataCame(new: venueSearchResult.response.groups)
+                    delegate?.newDataCame(new: venueSearchResult.venueList)
+                    
                 } catch {
                     print("NetworkHandler::requestCompleted() -> Parsing the JSON was not successfull, error: \(error)")
                 }
@@ -82,4 +86,5 @@ class NetworkHandler {
 
 protocol SearchResultsAvailableDelegate: class {
     func newDataCame(new venues: [Venue]) -> Void
+    func initialize(from dictionary: NSDictionary)
 }

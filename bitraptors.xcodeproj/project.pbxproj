@@ -19,6 +19,9 @@
 		A4A0324524A5F90D008561A6 /* VenueSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324424A5F90D008561A6 /* VenueSearchResult.swift */; };
 		A4A0324724A630CB008561A6 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324624A630CB008561A6 /* Venue.swift */; };
 		A4A0324924A631D9008561A6 /* VenueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324824A631D9008561A6 /* VenueList.swift */; };
+		A4A0324B24A8BF0D008561A6 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324A24A8BF0D008561A6 /* ListView.swift */; };
+		A4A0324D24A8E45A008561A6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324C24A8E45A008561A6 /* DetailView.swift */; };
+		A4A0324F24A8E526008561A6 /* VenueListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324E24A8E526008561A6 /* VenueListRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		A4A0324424A5F90D008561A6 /* VenueSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueSearchResult.swift; sourceTree = "<group>"; };
 		A4A0324624A630CB008561A6 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		A4A0324824A631D9008561A6 /* VenueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueList.swift; sourceTree = "<group>"; };
+		A4A0324A24A8BF0D008561A6 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		A4A0324C24A8E45A008561A6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		A4A0324E24A8E526008561A6 /* VenueListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueListRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,9 @@
 				A4A0324424A5F90D008561A6 /* VenueSearchResult.swift */,
 				A4A0324624A630CB008561A6 /* Venue.swift */,
 				A4A0324224A5E76C008561A6 /* LocationManager.swift */,
+				A4A0324A24A8BF0D008561A6 /* ListView.swift */,
+				A4A0324E24A8E526008561A6 /* VenueListRowView.swift */,
+				A4A0324C24A8E45A008561A6 /* DetailView.swift */,
 				A4A0322E24A527E5008561A6 /* ContentView.swift */,
 				A4A0324024A53187008561A6 /* MapView.swift */,
 				A4A0323024A527E8008561A6 /* Assets.xcassets */,
@@ -166,13 +175,16 @@
 			files = (
 				A4A0322B24A527E5008561A6 /* AppDelegate.swift in Sources */,
 				A4A0324724A630CB008561A6 /* Venue.swift in Sources */,
+				A4A0324B24A8BF0D008561A6 /* ListView.swift in Sources */,
 				A4A0322D24A527E5008561A6 /* SceneDelegate.swift in Sources */,
 				A4A0324324A5E76C008561A6 /* LocationManager.swift in Sources */,
+				A4A0324D24A8E45A008561A6 /* DetailView.swift in Sources */,
 				A4A0324524A5F90D008561A6 /* VenueSearchResult.swift in Sources */,
 				A4A0324124A53188008561A6 /* MapView.swift in Sources */,
 				A4A0322F24A527E5008561A6 /* ContentView.swift in Sources */,
 				A4A0323F24A52840008561A6 /* NetworkHandler.swift in Sources */,
 				A4A0324924A631D9008561A6 /* VenueList.swift in Sources */,
+				A4A0324F24A8E526008561A6 /* VenueListRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

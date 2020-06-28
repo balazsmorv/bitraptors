@@ -9,15 +9,15 @@
 import Foundation
 
 
-class Venue: Decodable {
+class Venue: Decodable, Identifiable {
     //MARK: - Properties
-    let id = "N/A"
-    let name = "N/A"
+    let id: String
+    let name: String
     let contactInformation: ContactInformation?
     let location: Location?
-    let category: VenueCategory?
-    let url = "N/A"
-    let rating = "N/A"
+    let category: [VenueCategory]
+    let url: String?
+    let rating: Double?
     let openStatus: OpenStatus?
     
     //MARK: - Coding keys
@@ -30,6 +30,54 @@ class Venue: Decodable {
         case url
         case rating
         case openStatus = "hours"
+    }
+    
+    //MARK: - Getters
+    func getName() -> String {
+        return name
+    }
+    
+    func getId() -> String {
+        return id
+    }
+    
+    func getContactInformation() -> ContactInformation? {
+        return contactInformation
+    }
+    
+    func getLocation() -> Location? {
+        return location
+    }
+    
+    func getCategory() -> VenueCategory {
+        return category[0]
+    }
+    
+    func getURL() -> String? {
+        return url
+    }
+    
+    func getRating() -> Double? {
+        return rating
+    }
+    
+    func getOpenStatus() -> OpenStatus? {
+        return openStatus
+    }
+    
+    //MARK: - Functions
+    //just for demo
+    init() {
+        id = "id"
+        name = "name"
+        contactInformation = ContactInformation(phone: "phone number", twitterName: "@twittername", facebookName: "facebookname", instagramName: "instaname")
+        location = Location(latitude: 50, longitude: 0)
+        var c = [VenueCategory]()
+        c.append(VenueCategory(name: "category"))
+        category = c
+        url = "url"
+        rating = 10.0
+        openStatus = OpenStatus(status: "open", isOpen: true)
     }
     
 }
@@ -52,26 +100,13 @@ struct ContactInformation: Decodable {
 struct Location: Decodable {
     let latitude: Double
     let longitude: Double
-    let formattedAddress: FormattedAddress
     
     enum CodingKeys: String, CodingKey {
         case latitude = "lat"
         case longitude = "lng"
-        case formattedAddress
     }
 }
 
-struct FormattedAddress: Decodable {
-    let first: String
-    let second: String
-    let third: String
-    
-    enum CodingKeys: String, CodingKey {
-        case first = "0"
-        case second = "1"
-        case third = "2"
-    }
-}
 
 struct VenueCategory: Decodable {
     let name: String

@@ -13,6 +13,7 @@ final class VenueSearchResult: Decodable {
     //MARK: - Properties
     let metaData: MetaData
     let response: JSONResponse
+    var venueList: [Venue]
     
     //MARK: - Coding keys for JSON decode
     enum CodingKeys: String, CodingKey {
@@ -25,6 +26,10 @@ final class VenueSearchResult: Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         metaData = try values.decode(MetaData.self, forKey: .metaData)
         response = try values.decode(JSONResponse.self, forKey: .response)
+        venueList = [Venue]()
+        for item in response.groups[0].items {
+            venueList.append(item.venue)
+        }
     }
     
 }
@@ -37,6 +42,13 @@ struct MetaData: Decodable {
 
 //MARK: - API response field
 struct JSONResponse: Decodable {
-    let groups: [Venue]
+    let groups: [Group]
 }
 
+struct Group: Decodable {
+    let items: [Item]
+}
+
+struct Item: Decodable {
+    let venue: Venue
+}
