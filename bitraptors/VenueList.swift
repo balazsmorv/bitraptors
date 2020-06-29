@@ -49,7 +49,6 @@ extension VenueList: SearchResultsAvailableDelegate {
     func newDataCame(new venue: Venue) {
         DispatchQueue.main.async {
             self.venues.append(venue)
-            print(venue.name)
         }
     }
 }

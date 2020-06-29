@@ -13,7 +13,7 @@ struct ContentView: View {
     
     
     var body: some View {
-        Text("coming soon :)")
+        MapView()
     }
 }
 

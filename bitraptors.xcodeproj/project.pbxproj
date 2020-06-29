@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A483D8A924AA381D00CC63B6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A483D8A824AA381D00CC63B6 /* MainView.swift */; };
 		A4A0322B24A527E5008561A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0322A24A527E5008561A6 /* AppDelegate.swift */; };
 		A4A0322D24A527E5008561A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0322C24A527E5008561A6 /* SceneDelegate.swift */; };
 		A4A0322F24A527E5008561A6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0322E24A527E5008561A6 /* ContentView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A483D8A824AA381D00CC63B6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A4A0322724A527E5008561A6 /* bitraptors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bitraptors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A0322A24A527E5008561A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4A0322C24A527E5008561A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				A4A0324E24A8E526008561A6 /* VenueListRowView.swift */,
 				A4A0324C24A8E45A008561A6 /* DetailView.swift */,
 				A4A0322E24A527E5008561A6 /* ContentView.swift */,
+				A483D8A824AA381D00CC63B6 /* MainView.swift */,
 				A4A0324024A53187008561A6 /* MapView.swift */,
 				A4A0323024A527E8008561A6 /* Assets.xcassets */,
 				A4A0323524A527E8008561A6 /* LaunchScreen.storyboard */,
@@ -174,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4A0322B24A527E5008561A6 /* AppDelegate.swift in Sources */,
+				A483D8A924AA381D00CC63B6 /* MainView.swift in Sources */,
 				A4A0324724A630CB008561A6 /* Venue.swift in Sources */,
 				A4A0324B24A8BF0D008561A6 /* ListView.swift in Sources */,
 				A4A0322D24A527E5008561A6 /* SceneDelegate.swift in Sources */,

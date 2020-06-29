@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct VenueID: Decodable {
     let id: String
@@ -48,8 +49,15 @@ class Venue: Decodable, Identifiable {
         return contactInformation
     }
     
-    func getLocation() -> Location? {
-        return location
+    func getLocation() -> CLLocationCoordinate2D? {
+        if let latitude = location?.latitude, let longitude = location?.longitude {
+            var location = CLLocationCoordinate2D()
+            location.latitude = latitude
+            location.longitude = longitude
+            return location
+        } else {
+            return nil
+        }
     }
     
     func getCategory() -> VenueCategory {

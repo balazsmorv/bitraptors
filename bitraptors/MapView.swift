@@ -11,6 +11,8 @@ import MapKit
 
 struct MapView: UIViewRepresentable {
     
+    @EnvironmentObject var venueList: VenueList
+    
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
         
@@ -33,11 +35,15 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        let annotation = MKPointAnnotation()
-        annotation.title = "Title"
-        annotation.subtitle = "Subtitle"
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 51.5, longitude: 0.13)
-        mapView.addAnnotation(annotation)
+        for venue in venueList.getAllVenue() {
+            if venue.getLocation() != nil {
+                let annotation = MKPointAnnotation()
+                annotation.title = venue.getName()
+                annotation.subtitle = venue.getCategory().name
+                annotation.coordinate = venue.getLocation()!
+                mapView.addAnnotation(annotation)
+            }
+        }
         
         return mapView
     }
