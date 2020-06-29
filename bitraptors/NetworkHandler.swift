@@ -17,19 +17,10 @@ class NetworkHandler {
     let clientID = "OOMFJUB1X4YNK04OKARGJSSRJP51VVCQMW5RTCJ03YIFWPVJ"
     let clientSecret = "2PMTIAKNF3SIP4GPDVIXWYPNKNJYXZ0AOLHARE2PPIC1KB0L"
     let version = "20200626"
-    let limit = 10
+    let limit = 3
     
-    var userLocation: CLLocationCoordinate2D? {
-        didSet {
-            // do api call again
-        }
-    }
-    
-    var radius: Int {
-        didSet {
-            // do api call again
-        }
-    }
+    var userLocation: CLLocationCoordinate2D?
+    var radius: Int
     
     var delegate: SearchResultsAvailableDelegate?
     
@@ -41,7 +32,7 @@ class NetworkHandler {
         userLocation?.longitude = 17.9135
     }
     
-    func makeAPIRequest() {
+    func loadVenues() {
         let url = """
         https://api.foursquare.com/v2/venues/explore?\
         client_id=\(clientID)\
@@ -51,6 +42,10 @@ class NetworkHandler {
         &limit=\(limit)\
         &v=\(version)
         """
+        makeAPIRequest(url: url, completionHandler: requestCompleted(_:_:_:))
+    }
+    
+    func makeAPIRequest(url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
         cachePolicy: .useProtocolCachePolicy,
@@ -58,7 +53,7 @@ class NetworkHandler {
         request.httpMethod = "GET"
         let session = URLSession.shared
         
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: requestCompleted(_:_:_:))
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completionHandler)
         dataTask.resume()
     }
     
@@ -70,7 +65,7 @@ class NetworkHandler {
                 do {
                     
                     let venueSearchResult = try JSONDecoder().decode(VenueSearchResult.self, from: data!)
-                    delegate?.newDataCame(new: venueSearchResult.venueList)
+                    getDetails(for: venueSearchResult.venueIDs)
                     
                 } catch {
                     print("NetworkHandler::requestCompleted() -> Parsing the JSON was not successfull, error: \(error)")
@@ -81,10 +76,42 @@ class NetworkHandler {
         }
     }
     
+    private func getDetails(for ids: [String]) {
+        print(ids)
+        for id in ids {
+            let url = """
+            https://api.foursquare.com/v2/venues/\(id)?\
+            &client_id=\(clientID)\
+            &client_secret=\(clientSecret)\
+            &v=\(version)
+            """
+            print(url)
+            makeAPIRequest(url: url, completionHandler: gotVenueDetails)
+        }
+    }
+    
+    private func gotVenueDetails(_ data: Data?, _ response: URLResponse?, _ error: Error?) {
+        if error != nil {
+            print(error!)
+        } else {
+            if data != nil {
+                do {
+                    
+                    let venueSearchResult = try JSONDecoder().decode(VenueDetailResult.self, from: data!)
+                    delegate?.newDataCame(new: venueSearchResult.venue)
+                    
+                } catch {
+                    print("NetworkHandler::gotVenueDetails() -> Parsing the JSON was not successfull, error: \(error)")
+                }
+            } else {
+                print("NetworkHandler::gotVenueDetails() -> the data parameter was nil.")
+            }
+        }
+    }
+    
 }
 
 
 protocol SearchResultsAvailableDelegate: class {
-    func newDataCame(new venues: [Venue]) -> Void
-    func initialize(from dictionary: NSDictionary)
+    func newDataCame(new venue: Venue) -> Void
 }

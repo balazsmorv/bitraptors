@@ -8,6 +8,9 @@
 
 import Foundation
 
+struct VenueID: Decodable {
+    let id: String
+}
 
 class Venue: Decodable, Identifiable {
     //MARK: - Properties

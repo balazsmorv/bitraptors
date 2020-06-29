@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let networkHandler = NetworkHandler()
         let venueList = VenueList()
         networkHandler.delegate = venueList
-        networkHandler.makeAPIRequest()
+        networkHandler.loadVenues()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

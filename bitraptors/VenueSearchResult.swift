@@ -8,12 +8,29 @@
 
 import Foundation
 
+final class VenueDetailResult: Decodable {
+    let metaData: MetaData
+    let response: JSONDetailsResponse
+    var venue: Venue
+    
+    enum CodingKeys: String, CodingKey {
+        case metaData = "meta"
+        case response
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        metaData = try values.decode(MetaData.self, forKey: .metaData)
+        response = try values.decode(JSONDetailsResponse.self, forKey: .response)
+        venue = response.venue
+    }
+}
 
 final class VenueSearchResult: Decodable {
     //MARK: - Properties
     let metaData: MetaData
     let response: JSONResponse
-    var venueList: [Venue]
+    var venueIDs = [String]()
     
     //MARK: - Coding keys for JSON decode
     enum CodingKeys: String, CodingKey {
@@ -26,9 +43,8 @@ final class VenueSearchResult: Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         metaData = try values.decode(MetaData.self, forKey: .metaData)
         response = try values.decode(JSONResponse.self, forKey: .response)
-        venueList = [Venue]()
         for item in response.groups[0].items {
-            venueList.append(item.venue)
+            venueIDs.append(item.venue.id)
         }
     }
     
@@ -43,6 +59,10 @@ struct MetaData: Decodable {
 //MARK: - API response field
 struct JSONResponse: Decodable {
     let groups: [Group]
+}
+
+struct JSONDetailsResponse: Decodable {
+    let venue: Venue
 }
 
 struct Group: Decodable {
