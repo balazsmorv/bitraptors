@@ -14,10 +14,14 @@ import CoreLocation
 class NetworkHandler {
     
     // MARK: - Properties
-    let clientID = "APEHQ0KDIWKVPJUFC0HSUZWEWGQRGVBVKZJZ1ZPBPHWIICZI"
-    let clientSecret = "IHPCXEWCEY03VDQUFUL4SLXHYTAUCPKKTKM4D3LMB3IYHPVT"
+    let clientID3 = "APEHQ0KDIWKVPJUFC0HSUZWEWGQRGVBVKZJZ1ZPBPHWIICZI"
+    let clientID2 = "DPLXYVE0BSR5OUTL3OBTG5VLO2RRHHHQDTLE51U1EPGTKUGQ"
+    let clientID = "OOMFJUB1X4YNK04OKARGJSSRJP51VVCQMW5RTCJ03YIFWPVJ"
+    let clientSecret3 = "IHPCXEWCEY03VDQUFUL4SLXHYTAUCPKKTKM4D3LMB3IYHPVT"
+    let clientSecret2 = "AO2KTWOFUSBEGC5Z2NL5WG35HQHWLWJIB2UL32RUX2EOCGTZ"
+    let clientSecret = "2PMTIAKNF3SIP4GPDVIXWYPNKNJYXZ0AOLHARE2PPIC1KB0L"
     let version = "20200626"
-    let limit = 3
+    let limit = 30
     
     var userLocation: CLLocationCoordinate2D?
     var radius: Int
@@ -46,7 +50,7 @@ class NetworkHandler {
     }
     
     func makeAPIRequest(url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        
+        print("making request")
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
         cachePolicy: .useProtocolCachePolicy,
         timeoutInterval: 10.0)

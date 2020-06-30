@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A483D8A924AA381D00CC63B6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A483D8A824AA381D00CC63B6 /* MainView.swift */; };
+		A483D8B124AB6E1800CC63B6 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A483D8B024AB6E1800CC63B6 /* ImageLoader.swift */; };
+		A483D8B324AB6E5F00CC63B6 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A483D8B224AB6E5F00CC63B6 /* AsyncImage.swift */; };
 		A4A0322B24A527E5008561A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0322A24A527E5008561A6 /* AppDelegate.swift */; };
 		A4A0322D24A527E5008561A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0322C24A527E5008561A6 /* SceneDelegate.swift */; };
-		A4A0322F24A527E5008561A6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0322E24A527E5008561A6 /* ContentView.swift */; };
 		A4A0323124A527E8008561A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A0323024A527E8008561A6 /* Assets.xcassets */; };
 		A4A0323424A527E8008561A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A0323324A527E8008561A6 /* Preview Assets.xcassets */; };
 		A4A0323724A527E8008561A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A0323524A527E8008561A6 /* LaunchScreen.storyboard */; };
@@ -27,10 +28,11 @@
 
 /* Begin PBXFileReference section */
 		A483D8A824AA381D00CC63B6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A483D8B024AB6E1800CC63B6 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		A483D8B224AB6E5F00CC63B6 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		A4A0322724A527E5008561A6 /* bitraptors.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bitraptors.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A0322A24A527E5008561A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4A0322C24A527E5008561A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A4A0322E24A527E5008561A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A4A0323024A527E8008561A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4A0323324A527E8008561A6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A4A0323624A527E8008561A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,9 +86,10 @@
 				A4A0324624A630CB008561A6 /* Venue.swift */,
 				A4A0324224A5E76C008561A6 /* LocationManager.swift */,
 				A4A0324A24A8BF0D008561A6 /* ListView.swift */,
+				A483D8B024AB6E1800CC63B6 /* ImageLoader.swift */,
+				A483D8B224AB6E5F00CC63B6 /* AsyncImage.swift */,
 				A4A0324E24A8E526008561A6 /* VenueListRowView.swift */,
 				A4A0324C24A8E45A008561A6 /* DetailView.swift */,
-				A4A0322E24A527E5008561A6 /* ContentView.swift */,
 				A483D8A824AA381D00CC63B6 /* MainView.swift */,
 				A4A0324024A53187008561A6 /* MapView.swift */,
 				A4A0323024A527E8008561A6 /* Assets.xcassets */,
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A483D8B324AB6E5F00CC63B6 /* AsyncImage.swift in Sources */,
 				A4A0322B24A527E5008561A6 /* AppDelegate.swift in Sources */,
 				A483D8A924AA381D00CC63B6 /* MainView.swift in Sources */,
 				A4A0324724A630CB008561A6 /* Venue.swift in Sources */,
@@ -185,10 +189,10 @@
 				A4A0324D24A8E45A008561A6 /* DetailView.swift in Sources */,
 				A4A0324524A5F90D008561A6 /* VenueSearchResult.swift in Sources */,
 				A4A0324124A53188008561A6 /* MapView.swift in Sources */,
-				A4A0322F24A527E5008561A6 /* ContentView.swift in Sources */,
 				A4A0323F24A52840008561A6 /* NetworkHandler.swift in Sources */,
 				A4A0324924A631D9008561A6 /* VenueList.swift in Sources */,
 				A4A0324F24A8E526008561A6 /* VenueListRowView.swift in Sources */,
+				A483D8B124AB6E1800CC63B6 /* ImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

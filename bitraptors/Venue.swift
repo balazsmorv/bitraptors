@@ -16,13 +16,14 @@ struct VenueID: Decodable {
 class Venue: Decodable, Identifiable {
     //MARK: - Properties
     let id: String
-    let name: String
-    let contactInformation: ContactInformation?
-    let location: Location?
-    let category: [VenueCategory]
-    let url: String?
-    let rating: Double?
-    let openStatus: OpenStatus?
+    private let name: String
+    private let contactInformation: ContactInformation?
+    private let location: Location?
+    private let category: [VenueCategory]
+    private let url: String?
+    private let rating: Double?
+    private let openStatus: OpenStatus?
+    private let photos: Photos
     
     //MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
@@ -34,6 +35,7 @@ class Venue: Decodable, Identifiable {
         case url
         case rating
         case openStatus = "hours"
+        case photos
     }
     
     //MARK: - Getters
@@ -60,8 +62,8 @@ class Venue: Decodable, Identifiable {
         }
     }
     
-    func getCategory() -> VenueCategory {
-        return category[0]
+    func getCategory() -> String {
+        return category[0].name
     }
     
     func getURL() -> String? {
@@ -74,6 +76,10 @@ class Venue: Decodable, Identifiable {
     
     func getOpenStatus() -> OpenStatus? {
         return openStatus
+    }
+    
+    func getPhotoData() -> PhotoItem? {
+        return photos.groups[0].items[0]
     }
     
     //MARK: - Functions
@@ -89,6 +95,7 @@ class Venue: Decodable, Identifiable {
         url = "url"
         rating = 10.0
         openStatus = OpenStatus(status: "open", isOpen: true)
+        photos = Photos(count: 1, groups: [PhotoGroup(items: [PhotoItem(prefix: "", suffix: "", width: 0, height: 0)])])
     }
     
 }
@@ -108,7 +115,7 @@ struct ContactInformation: Decodable {
     }
 }
 
-struct Location: Decodable {
+fileprivate struct Location: Decodable {
     let latitude: Double
     let longitude: Double
     
@@ -119,11 +126,11 @@ struct Location: Decodable {
 }
 
 
-struct VenueCategory: Decodable {
+fileprivate struct VenueCategory: Decodable {
     let name: String
 }
 
-struct Coordinates: Decodable {
+fileprivate struct Coordinates: Decodable {
     let latitude: Double
     let longitude: Double
 }
@@ -131,4 +138,21 @@ struct Coordinates: Decodable {
 struct OpenStatus: Decodable {
     let status: String
     let isOpen: Bool
+}
+
+
+fileprivate struct Photos: Decodable {
+    let count: Int
+    let groups: [PhotoGroup]
+}
+
+fileprivate struct PhotoGroup: Decodable {
+    let items: [PhotoItem]
+}
+
+struct PhotoItem: Decodable {
+    let prefix: String
+    let suffix: String
+    let width: Int
+    let height: Int
 }

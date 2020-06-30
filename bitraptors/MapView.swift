@@ -39,7 +39,7 @@ struct MapView: UIViewRepresentable {
             if venue.getLocation() != nil {
                 let annotation = MKPointAnnotation()
                 annotation.title = venue.getName()
-                annotation.subtitle = venue.getCategory().name
+                annotation.subtitle = venue.getCategory()
                 annotation.coordinate = venue.getLocation()!
                 mapView.addAnnotation(annotation)
             }

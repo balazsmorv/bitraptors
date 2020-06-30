@@ -9,8 +9,8 @@
 import Foundation
 
 final class VenueDetailResult: Decodable {
-    let metaData: MetaData
-    let response: JSONDetailsResponse
+    fileprivate let metaData: MetaData
+    fileprivate let response: JSONDetailsResponse
     var venue: Venue
     
     enum CodingKeys: String, CodingKey {
@@ -28,8 +28,8 @@ final class VenueDetailResult: Decodable {
 
 final class VenueSearchResult: Decodable {
     //MARK: - Properties
-    let metaData: MetaData
-    let response: JSONResponse
+    fileprivate let metaData: MetaData
+    fileprivate let response: JSONResponse
     var venueIDs = [String]()
     
     //MARK: - Coding keys for JSON decode
@@ -51,24 +51,24 @@ final class VenueSearchResult: Decodable {
 }
 
 //MARK: - API metadata
-struct MetaData: Decodable {
+fileprivate struct MetaData: Decodable {
     let code: Int
     let requestId: String
 }
 
 //MARK: - API response field
-struct JSONResponse: Decodable {
+fileprivate struct JSONResponse: Decodable {
     let groups: [Group]
 }
 
-struct JSONDetailsResponse: Decodable {
+fileprivate struct JSONDetailsResponse: Decodable {
     let venue: Venue
 }
 
-struct Group: Decodable {
+fileprivate struct Group: Decodable {
     let items: [Item]
 }
 
-struct Item: Decodable {
+fileprivate struct Item: Decodable {
     let venue: Venue
 }

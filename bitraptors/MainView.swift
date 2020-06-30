@@ -15,13 +15,11 @@ struct MainView: View {
     var body: some View {
         TabView {
             ListView()
-                .environmentObject(venueList)
                 .tabItem {
                     Image(systemName: "mappin.and.ellipse")
-                    Text("on TV")
+                    Text("List")
             }
             MapView()
-                .environmentObject(venueList)
                 .tabItem {
                     Image(systemName: "map")
                     Text("Map")
