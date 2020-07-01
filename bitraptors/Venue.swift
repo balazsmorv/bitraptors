@@ -13,7 +13,8 @@ struct VenueID: Decodable {
     let id: String
 }
 
-class Venue: Decodable, Identifiable {
+class Venue: Decodable, Identifiable, Hashable {
+    
     //MARK: - Properties
     let id: String
     private let name: String
@@ -24,6 +25,10 @@ class Venue: Decodable, Identifiable {
     private let rating: Double?
     private let openStatus: OpenStatus?
     private let photos: Photos
+    
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(ObjectIdentifier(self))
+    }
     
     //MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
@@ -100,6 +105,10 @@ class Venue: Decodable, Identifiable {
         rating = 10.0
         openStatus = OpenStatus(status: "open", isOpen: true)
         photos = Photos(count: 1, groups: [PhotoGroup(items: [PhotoItem(prefix: "", suffix: "", width: 0, height: 0)])])
+    }
+    
+    static func == (lhs: Venue, rhs: Venue) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
     
 }

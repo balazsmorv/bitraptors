@@ -14,14 +14,25 @@ import CoreLocation
 class NetworkHandler {
     
     // MARK: - Properties
-    let clientID4 = "APEHQ0KDIWKVPJUFC0HSUZWEWGQRGVBVKZJZ1ZPBPHWIICZI"
-    let clientID3 = "DPLXYVE0BSR5OUTL3OBTG5VLO2RRHHHQDTLE51U1EPGTKUGQ"
-    let clientID2 = "OOMFJUB1X4YNK04OKARGJSSRJP51VVCQMW5RTCJ03YIFWPVJ"
-    let clientID = "AFYRYZCHLWODNNY0MX2SR1H5DEGEST3RAHZFBGQTKEBEORBV"
-    let clientSecret4 = "IHPCXEWCEY03VDQUFUL4SLXHYTAUCPKKTKM4D3LMB3IYHPVT"
-    let clientSecret3 = "AO2KTWOFUSBEGC5Z2NL5WG35HQHWLWJIB2UL32RUX2EOCGTZ"
-    let clientSecret2 = "2PMTIAKNF3SIP4GPDVIXWYPNKNJYXZ0AOLHARE2PPIC1KB0L"
-    let clientSecret = "2E4H1WV4FVNBPV1XABZYUMPKSAS3WJRNC4QPKMEG5SRIXZPV"
+    
+    // accounts
+//    let clientID = "APEHQ0KDIWKVPJUFC0HSUZWEWGQRGVBVKZJZ1ZPBPHWIICZI"
+//    let clientSecret = "IHPCXEWCEY03VDQUFUL4SLXHYTAUCPKKTKM4D3LMB3IYHPVT"
+    
+//    let clientID = "DPLXYVE0BSR5OUTL3OBTG5VLO2RRHHHQDTLE51U1EPGTKUGQ"
+//    let clientSecret = "AO2KTWOFUSBEGC5Z2NL5WG35HQHWLWJIB2UL32RUX2EOCGTZ"
+    
+//    let clientID = "OOMFJUB1X4YNK04OKARGJSSRJP51VVCQMW5RTCJ03YIFWPVJ"
+//    let clientSecret = "2PMTIAKNF3SIP4GPDVIXWYPNKNJYXZ0AOLHARE2PPIC1KB0L"
+
+//    let clientID = "AFYRYZCHLWODNNY0MX2SR1H5DEGEST3RAHZFBGQTKEBEORBV"
+//    let clientSecret = "2E4H1WV4FVNBPV1XABZYUMPKSAS3WJRNC4QPKMEG5SRIXZPV"
+    
+    let clientID = "INVAKXOZKWRQONSD02R0IWNVCCCZSOWAVELPYLVCZJ3K5BES"
+    let clientSecret = "1MBZ541QH2XBR5KRTVKNJOLTOHSY1YPWP1W30S4UFLVGLEJC"
+    
+    
+    
     let version = "20200626"
     let limit = 30
     
@@ -39,6 +50,7 @@ class NetworkHandler {
     }
     
     func loadVenues() {
+        print("loading venues")
         let url = """
         https://api.foursquare.com/v2/venues/explore?\
         client_id=\(clientID)\
@@ -52,7 +64,6 @@ class NetworkHandler {
     }
     
     func makeAPIRequest(url: String, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        print("making request")
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
         cachePolicy: .useProtocolCachePolicy,
         timeoutInterval: 10.0)
@@ -83,7 +94,7 @@ class NetworkHandler {
     }
     
     private func getDetails(for ids: [String]) {
-        print(ids)
+        print("getting details")
         for id in ids {
             let url = """
             https://api.foursquare.com/v2/venues/\(id)?\
@@ -91,8 +102,9 @@ class NetworkHandler {
             &client_secret=\(clientSecret)\
             &v=\(version)
             """
-            print(url)
-            makeAPIRequest(url: url, completionHandler: gotVenueDetails)
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.makeAPIRequest(url: url, completionHandler: self.gotVenueDetails)
+            }
         }
     }
     

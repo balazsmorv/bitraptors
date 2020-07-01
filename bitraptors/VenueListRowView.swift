@@ -15,6 +15,7 @@ struct VenueListRowView: View {
     var body: some View {
         HStack() {
             
+            
             if let suffix = self.venue.getPhotoData()?.suffix, let prefix = self.venue.getPhotoData()?.prefix, let url = URL(string: "\(prefix)36x36\(suffix)") {
                 AsyncImage(url: url, placeholder: Text("Loading..."))
                     .frame(width: 40, height: 40, alignment: .center)

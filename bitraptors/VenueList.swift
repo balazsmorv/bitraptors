@@ -8,14 +8,17 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 
+// The ViewModel in MVVM
 class VenueList: ObservableObject {
     
     //MARK: - Properties
     
     // stores the venues. When changed, the ui redraws itself
-    @Published private var venues = [Venue]()
+    @Published private(set) var venues = [Venue]()
+    @Published private(set) var pictures = [Venue : Image]()
     
     enum CodingKeys: String, CodingKey {
         case items

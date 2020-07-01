@@ -15,7 +15,8 @@ struct ListView: View {
     
     
     var body: some View {
-        NavigationView {
+        print("venueList = \(venueList)")
+        return NavigationView {
             List(venueList.getAllVenue()) { venue in
                 NavigationLink(destination: DetailView(venue: venue)) {
                     VenueListRowView(venue: venue)

@@ -16,6 +16,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     //MARK: - Properties
     private let locationManager = CLLocationManager()
     private var networkManager: NetworkHandler?
+    private var locationLoadingBegan = false
     
     //MARK: - Init
     override init() {
@@ -27,6 +28,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.locationManager.startUpdatingLocation()
     }
     
+    func getCLLocationManager() -> CLLocationManager {
+        return locationManager
+    }
+    
     func setNetworkManager(to networkManager: NetworkHandler) {
         self.networkManager = networkManager
         
@@ -36,8 +41,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                     print("No access")
                 case .authorizedAlways, .authorizedWhenInUse:
                     print("access granted, nm: \(networkManager)")
-                    networkManager.userLocation = self.getCoordinates()
-                    networkManager.loadVenues()
+                    if !locationLoadingBegan {
+                        networkManager.userLocation = self.getCoordinates()
+                        locationLoadingBegan = true
+                        DispatchQueue.global(qos: .userInteractive).async {
+                            networkManager.loadVenues()
+                        }
+                    }
                 }
             } else {
                 print("Location services are not enabled")
@@ -60,10 +70,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         case .notDetermined, .restricted, .denied:
             print("No access")
         case .authorizedAlways, .authorizedWhenInUse:
-            print("access granted, nm: \(networkManager)")
-            networkManager?.userLocation = self.getCoordinates()
-            print("my coordinates are: \(networkManager?.userLocation?.latitude), \(networkManager?.userLocation?.longitude)")
-            networkManager?.loadVenues()
+            if !locationLoadingBegan {
+                networkManager?.userLocation = self.getCoordinates()
+                networkManager?.loadVenues()
+            }
         }
     }
 }

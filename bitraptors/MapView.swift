@@ -12,6 +12,7 @@ import MapKit
 struct MapView: UIViewRepresentable {
     
     @EnvironmentObject var venueList: VenueList
+    @EnvironmentObject var locationManager: LocationManager
     
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
@@ -23,6 +24,7 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
             view.canShowCallout = true
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             return view
         }
     }
@@ -49,12 +51,28 @@ struct MapView: UIViewRepresentable {
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
-        
-    }
-}
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
+        view.showsUserLocation = true
+
+        if CLLocationManager.locationServicesEnabled() {
+            //        self.locationManager.delegate = self
+            self.locationManager.getCLLocationManager().startUpdatingLocation()
+
+            //Temporary fix: App crashes as it may execute before getting users current location
+            //Try to run on device without DispatchQueue
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                let locValue:CLLocationCoordinate2D = self.locationManager.getCoordinates()
+                print("CURRENT LOCATION = \(locValue.latitude) \(locValue.longitude)")
+
+                let coordinate = CLLocationCoordinate2D(
+                    latitude: locValue.latitude, longitude: locValue.longitude)
+                let span = MKCoordinateSpan(latitudeDelta: 1.0, longitudeDelta: 1.0)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                view.setRegion(region, animated: true)
+
+            })
+        }
+
     }
 }
