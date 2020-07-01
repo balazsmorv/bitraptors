@@ -15,7 +15,7 @@ struct VenueListRowView: View {
     var body: some View {
         HStack() {
             
-            if let url = URL(string: "\(self.venue.getPhotoData()!.prefix)36x36\(self.venue.getPhotoData()!.suffix)") {
+            if let suffix = self.venue.getPhotoData()?.suffix, let prefix = self.venue.getPhotoData()?.prefix, let url = URL(string: "\(prefix)36x36\(suffix)") {
                 AsyncImage(url: url, placeholder: Text("Loading..."))
                     .frame(width: 40, height: 40, alignment: .center)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -29,6 +29,8 @@ struct VenueListRowView: View {
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray.opacity(0.3), lineWidth: 4))
                     .shadow(radius: 5)
             }
+            
+            
 
             Text(venue.getName()).frame(alignment: .leading)
             Spacer()

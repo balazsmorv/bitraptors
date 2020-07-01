@@ -79,7 +79,11 @@ class Venue: Decodable, Identifiable {
     }
     
     func getPhotoData() -> PhotoItem? {
-        return photos.groups[0].items[0]
+        if photos.count > 0 {
+            return photos.groups[0].items[0]
+        } else {
+            return nil
+        }
     }
     
     //MARK: - Functions

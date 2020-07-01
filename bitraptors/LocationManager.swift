@@ -15,11 +15,55 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     //MARK: - Properties
     private let locationManager = CLLocationManager()
+    private var networkManager: NetworkHandler?
     
     //MARK: - Init
     override init() {
         super.init()
-        
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
     }
     
+    func setNetworkManager(to networkManager: NetworkHandler) {
+        self.networkManager = networkManager
+        
+        if CLLocationManager.locationServicesEnabled() {
+             switch CLLocationManager.authorizationStatus() {
+                case .notDetermined, .restricted, .denied:
+                    print("No access")
+                case .authorizedAlways, .authorizedWhenInUse:
+                    print("access granted, nm: \(networkManager)")
+                    networkManager.userLocation = self.getCoordinates()
+                    networkManager.loadVenues()
+                }
+            } else {
+                print("Location services are not enabled")
+        }
+    }
+    
+    func getCoordinates() -> CLLocationCoordinate2D {
+        if let coordinates = locationManager.location?.coordinate {
+            return coordinates
+        } else {
+            var c = CLLocationCoordinate2D()
+            c.latitude = 47.093
+            c.longitude = 17.911
+            return c
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined, .restricted, .denied:
+            print("No access")
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("access granted, nm: \(networkManager)")
+            networkManager?.userLocation = self.getCoordinates()
+            print("my coordinates are: \(networkManager?.userLocation?.latitude), \(networkManager?.userLocation?.longitude)")
+            networkManager?.loadVenues()
+        }
+    }
 }

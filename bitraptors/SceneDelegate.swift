@@ -12,6 +12,7 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let locationManager = LocationManager()
     
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -25,8 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the network handler and the venue list - these will be the environment objects
         let networkHandler = NetworkHandler()
         let venueList = VenueList()
+        
         networkHandler.delegate = venueList
-        networkHandler.loadVenues()
+        locationManager.setNetworkManager(to: networkHandler)
+
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

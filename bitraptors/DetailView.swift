@@ -16,7 +16,7 @@ struct DetailView: View {
         ScrollView {
             VStack(spacing: 15) {
                 GeometryReader { geo in
-                    if let url = URL(string: "\(self.venue.getPhotoData()!.prefix)300x300\(self.venue.getPhotoData()!.suffix)") {
+                    if let suffix = self.venue.getPhotoData()?.suffix, let prefix = self.venue.getPhotoData()?.prefix, let url = URL(string: "\(prefix)36x36\(suffix)") {
                         AsyncImage(url: url, placeholder: Text("Loading..."))
                             .frame(width: geo.size.width, height: geo.size.height * 0.9, alignment: .center)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
