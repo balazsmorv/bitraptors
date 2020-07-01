@@ -24,6 +24,7 @@
 		A4A0324B24A8BF0D008561A6 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324A24A8BF0D008561A6 /* ListView.swift */; };
 		A4A0324D24A8E45A008561A6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324C24A8E45A008561A6 /* DetailView.swift */; };
 		A4A0324F24A8E526008561A6 /* VenueListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0324E24A8E526008561A6 /* VenueListRowView.swift */; };
+		A4EF6FFB24AC6B9400032D5E /* CustomHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EF6FFA24AC6B9400032D5E /* CustomHStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A4A0324A24A8BF0D008561A6 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		A4A0324C24A8E45A008561A6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		A4A0324E24A8E526008561A6 /* VenueListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueListRowView.swift; sourceTree = "<group>"; };
+		A4EF6FFA24AC6B9400032D5E /* CustomHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				A483D8B224AB6E5F00CC63B6 /* AsyncImage.swift */,
 				A4A0324E24A8E526008561A6 /* VenueListRowView.swift */,
 				A4A0324C24A8E45A008561A6 /* DetailView.swift */,
+				A4EF6FFA24AC6B9400032D5E /* CustomHStack.swift */,
 				A483D8A824AA381D00CC63B6 /* MainView.swift */,
 				A4A0324024A53187008561A6 /* MapView.swift */,
 				A4A0323024A527E8008561A6 /* Assets.xcassets */,
@@ -186,6 +189,7 @@
 				A4A0324B24A8BF0D008561A6 /* ListView.swift in Sources */,
 				A4A0322D24A527E5008561A6 /* SceneDelegate.swift in Sources */,
 				A4A0324324A5E76C008561A6 /* LocationManager.swift in Sources */,
+				A4EF6FFB24AC6B9400032D5E /* CustomHStack.swift in Sources */,
 				A4A0324D24A8E45A008561A6 /* DetailView.swift in Sources */,
 				A4A0324524A5F90D008561A6 /* VenueSearchResult.swift in Sources */,
 				A4A0324124A53188008561A6 /* MapView.swift in Sources */,
